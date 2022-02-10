@@ -11,11 +11,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 /**
  * Calculate student Average using MapReduce.
- *
  */
 public class StudentAverage
 {
@@ -26,22 +24,16 @@ public class StudentAverage
 
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String line = value.toString();
-//            StringTokenizer tokenizer = new StringTokenizer(line);
-//            while (tokenizer.hasMoreTokens()) {
-//                student.set(tokenizer.nextToken());
-//                context.write(student, one);
-//            }
-            // TODO student name & marks should be in new line with coma seperation.
-            String str[] = line.split(", ");
+            // Make sure name & marks are seperated by coma in the input.txt
+            String str[] = line.split(",");
 
             if (str.length == 2) {
 
-                // storing the gender
-                // which is in 5th column
+                // storing the student name
                 student.set(str[0]);
                 int i = Integer.parseInt(str[1]);
 
-                // storing the person of age
+                // storing the marks
                 marks.set(i);
 
             }
@@ -62,6 +54,7 @@ public class StudentAverage
                 sum += val.get();
                 count++;
             }
+            // average will be sum/count.
             context.write(key, new IntWritable(sum/count));
         }
     }
