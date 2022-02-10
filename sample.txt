@@ -1,0 +1,5 @@
+john,80
+john,80
+john,83
+snow,100
+snow,0
