@@ -1,5 +1,7 @@
 # EMRStudentAverage
-MapReduce application to calculate student Average marks from a text file. This application is developed in java
+MapReduce application to calculate student Average marks from a text file. 
+
+This is a Java based application
 
 
 ## To Run the sample
